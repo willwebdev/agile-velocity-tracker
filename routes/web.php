@@ -11,6 +11,31 @@
 |
 */
 
+use App\Helpers\Velocity;
+
 $router->get('/', function () use ($router) {
-    return "Hello world.";
+    return view('main', [
+    	'title' => "Agile velocity tracker",
+    	'header' => "Agile velocity tracker",
+    	'content' => view('form'),
+    	'menu' => []
+    ]);
+});
+
+$router->post('/calculate-velocity', function (\Illuminate\Http\Request $request) use ($router) {
+	$v = new Velocity(explode(",", $request->get("scores")));
+	return '{
+		"average": '.$v->getAverage().',
+		"variance": '.$v->getVariance().'
+	}';
+});
+
+
+$router->get('/legal', function () use ($router) {
+    return view('main', [
+    	'title' => 'Terms and privacy policy',
+    	'header' => 'Terms and privacy policy',
+    	'content' => view('legal'),
+    	'menu' => []
+    ]);
 });

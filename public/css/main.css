@@ -1,0 +1,137 @@
+body {
+	font-family: Arial;
+	font-size: 10pt;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+}
+
+a {
+	color: #33f;
+}
+
+.column-wrapper {
+	width: 80%;
+	max-width: 900px;
+	margin: 0 auto;
+	padding: 1px; /* stop margins collapsing */
+}
+
+.column-content {
+	margin: 20px;
+	text-align: left;
+}
+
+#top-nav {
+	width: 100%;
+	background: #a33;
+	text-align: center;
+}
+
+#top-nav a {
+	color: #fff;
+	margin-right: 10px;
+}
+
+#top-nav .column-content {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+#header h1 {
+	font-family: sans-serif;
+	font-weight: lighter;
+	/*text-transform: uppercase;*/
+	font-size: 40pt;
+	letter-spacing: -4px;
+	color: #c33;
+	margin: 15px 0;
+}
+
+#home {
+
+}
+
+#home-intro-panel {
+	padding: 10px;
+	background: #eee;
+}
+
+h1,
+h2 {
+	font-family: Georgia;
+	text-align: center;
+}
+
+#wardrobe h1 {
+	font-size: 28pt;
+}
+
+#wardrobe h2 {
+	font-size: 22pt;
+}
+
+#wardrobe-intro-panel {
+	padding: 10px;
+	background: #eee;
+}
+
+#wardrobe div.wardobe-section {
+	text-align: center;
+	border-bottom: 1px dashed #ccc;
+	padding-bottom: 20px;
+}
+
+#wardrobe div.wardobe-section:last-child {
+	border: 0;
+}
+
+#wardrobe div.wardobe-item {
+	display: inline-block;
+	padding: 10px;
+	text-align: center;
+	vertical-align: middle;
+	height: 250px;
+	width: 250px;
+}
+
+#wardrobe div.wardobe-item p {
+	font-weight: bold;
+	margin: 10px 0 0 0;
+}
+
+#wardrobe div.wardrobe-section-intro p {
+	font-style: italic;
+}
+
+button#generate-outfit {
+	padding: 10px;
+	background: #333;
+	color: #eee;
+	font-weight: bold;
+	font-size: 10pt;
+	border: 0;
+}
+
+button#generate-outfit:focus {
+	outline: none;
+}
+
+#generated-outfit {
+	text-align: center;
+	padding: 25px;
+	border: 1px dashed #ccc;
+	border-top: 0;
+	margin-bottom: 20px;
+}
+
+#footer {
+	background: #333;
+	padding: 50px;
+}
+
+#footer span,
+#footer a {
+	color: #666;
+	margin-right: 10px;
+}
