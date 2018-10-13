@@ -23,11 +23,8 @@ $router->get('/', function () use ($router) {
 });
 
 $router->post('/calculate-velocity', function (\Illuminate\Http\Request $request) use ($router) {
-	$v = new Velocity(explode(",", $request->get("scores")));
-	return '{
-		"average": '.$v->getAverage().',
-		"variance": '.$v->getVariance().'
-	}';
+	$v = new Velocity($request->get("scores"));
+	return $v->toJson();
 });
 
 

@@ -17,6 +17,24 @@ class Velocity {
 		return $this->stddev($this->_scores);
 	}
 
+	public function getMax() {
+		return max($this->_scores);
+	}
+
+	public function getMin() {
+		return min($this->_scores);
+	}
+
+	public function toJson() {
+		return
+'{
+    "average": '.$this->getAverage().',
+    "variance": '.$this->getVariance().',
+    "min": '.$this->getMin().',
+    "max": '.$this->getMax().'
+}';
+	}
+
 	protected function stddev($arr) {
 		// https://www.geeksforgeeks.org/php-program-find-standard-deviation-array
         $num_of_elements = count($arr); 
