@@ -5,4 +5,6 @@
 	<button v-on:click="calculateVelocity" id="calculate-velocity">Calculate velocity</button>
 
 	<div v-html="content">Please enable Javascript...</div>
+
+	<div id="chart"></div>
 </div>

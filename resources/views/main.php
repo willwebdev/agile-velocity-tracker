@@ -50,6 +50,7 @@
         <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.4.0"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
         <script src="/js/main.js"></script>
 
         <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID.
