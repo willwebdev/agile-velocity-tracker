@@ -10,26 +10,59 @@ var vmHome = new Vue({
 		calculateVelocity: function() {
 			var allScores = this.$refs.sprint_scores.value.split(",");
 			this.$http.post('/calculate-velocity', {scores: allScores}).then(response => {
-				this.content = "<p>Avg: " + response.body.average + " / Var: " + response.body.variance + "</p>" +
-								"<p>Min: " + response.body.min + " / Max: " + response.body.max + "</p>";
-
 				var latestScores = allScores.slice(-6);
 				var target = document.getElementById('chart');
 				var xVals = [1,2,3,4,5,6,7,8,9,10,11,12];
-				var trace1 = {
+
+				var traceScores = {
+					name: "Sprint scores",
 					x: xVals,
-					y: latestScores
+					y: latestScores,
+					line: {
+						color: "#f93"
+					}
 				};
-				var trace2 = {
+				var traceAverage = {
+					name: "Velocity (mean avg)",
 					x: xVals,
-					y: Array(latestScores.length - 1).fill(null).concat([]) // prediction line... TBC
+					y: Array(latestScores.length).fill(response.body.average),
+					line: {
+						dash: "dot",
+						color: "#06c"
+					},
+					mode: "lines"
 				};
-				var data = [trace1,trace2];
+				var traceVariationLow = {
+					name: "Lower variance",
+					x: xVals,
+					y: Array(latestScores.length).fill(response.body.average - response.body.variance),
+					line: {
+						dash: "dot",
+						color: "#900"
+					},
+					mode: "lines"
+				};
+				var traceVariationHigh = {
+					name: "Upper variance",
+					x: xVals,
+					y: Array(latestScores.length).fill(response.body.average + response.body.variance),
+					line: {
+						dash: "dot",
+						color: "#090"
+					},
+					mode: "lines"
+				};
+				var data = [traceScores, traceAverage, traceVariationLow, traceVariationHigh];
+
+				var range = (response.body.max - response.body.min) *1.5; // bit of padding
 				var layout = {
-					title: 'Your velocity',
+					title: 'Most recent 6 sprints',
+					yaxis: {
+						range: [response.body.average - range, response.body.average + range]
+					}
 				};
 				var opts = { staticPlot: true };
-				Plotly.plot(target, data, layout, opts);
+				Plotly.react(target, data, layout, opts);
             });
 		}
 	}
