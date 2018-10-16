@@ -59,9 +59,20 @@ var vmHome = new Vue({
 					title: 'Most recent 6 sprints',
 					yaxis: {
 						range: [response.body.average - range, response.body.average + range]
+					},
+					legend: {
+						orientation: "h"
+					},
+					margin: {
+						t: 75,
+						l: 50,
+						r: 50
 					}
 				};
-				var opts = { staticPlot: true };
+				var opts = {
+					staticPlot: true,
+					responsive: true
+				};
 				Plotly.react(target, data, layout, opts);
             });
 		}
