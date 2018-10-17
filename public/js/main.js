@@ -64,9 +64,9 @@ var vmHome = new Vue({
 						orientation: "h"
 					},
 					margin: {
-						t: 75,
-						l: 50,
-						r: 50
+						t: 60,
+						l: 45,
+						r: 30
 					}
 				};
 				var opts = {

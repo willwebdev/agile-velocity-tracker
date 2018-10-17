@@ -20,10 +20,11 @@
         <![endif]-->
 
         <div id="header">
+            <img src="/images/clock.png" alt="icon" />
             <h1><?php echo $header; ?></h1>
         </div>
 
-        <div id="top-nav">
+        <!--<div id="top-nav">
             <div class="column-wrapper">
                 <div class="column-content">
                     <a href="/">Home</a>
@@ -34,7 +35,7 @@
                     ?>
                 </div>
             </div>
-        </div>
+        </div>//-->
 
         <div class="column-wrapper">
             <div class="column-content">

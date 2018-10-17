@@ -40,92 +40,38 @@ a {
 #header {
 	padding: 1px;
 	background: #a33;
+	clear: both;
+	height: 50px;
+}
+
+#header img {
+	width: 35px;
+	filter: invert(1);
+	display: inline-block;
+	line-height: 50px;
+	vertical-align: middle;
 }
 
 #header h1 {
+	display: inline-block;
 	font-family: sans-serif;
 	font-weight: lighter;
 	font-size: 20pt;
 	letter-spacing: -1px;
 	color: #fff;
-	margin: 15px 0;
+	margin: 0;
+	line-height: 50px;
+	vertical-align: middle;
 }
 
-#home {
-
+#chart {
+	border: 1px solid #ccc;
+	margin: 30px 0;
 }
 
 #home-intro-panel {
 	padding: 10px;
 	background: #eee;
-}
-
-h1,
-h2 {
-	font-family: Georgia;
-	text-align: center;
-}
-
-#wardrobe h1 {
-	font-size: 28pt;
-}
-
-#wardrobe h2 {
-	font-size: 22pt;
-}
-
-#wardrobe-intro-panel {
-	padding: 10px;
-	background: #eee;
-}
-
-#wardrobe div.wardobe-section {
-	text-align: center;
-	border-bottom: 1px dashed #ccc;
-	padding-bottom: 20px;
-}
-
-#wardrobe div.wardobe-section:last-child {
-	border: 0;
-}
-
-#wardrobe div.wardobe-item {
-	display: inline-block;
-	padding: 10px;
-	text-align: center;
-	vertical-align: middle;
-	height: 250px;
-	width: 250px;
-}
-
-#wardrobe div.wardobe-item p {
-	font-weight: bold;
-	margin: 10px 0 0 0;
-}
-
-#wardrobe div.wardrobe-section-intro p {
-	font-style: italic;
-}
-
-button#generate-outfit {
-	padding: 10px;
-	background: #333;
-	color: #eee;
-	font-weight: bold;
-	font-size: 10pt;
-	border: 0;
-}
-
-button#generate-outfit:focus {
-	outline: none;
-}
-
-#generated-outfit {
-	text-align: center;
-	padding: 25px;
-	border: 1px dashed #ccc;
-	border-top: 0;
-	margin-bottom: 20px;
 }
 
 #footer {
