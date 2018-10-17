@@ -64,6 +64,31 @@ a {
 	vertical-align: middle;
 }
 
+#feedback {
+	display: none; /* "feature toggle" */
+	margin: 100px 0 0 0;
+	padding: 25px;
+	background: #eee;
+}
+
+#feedback textarea {
+	width: 90%;
+	height: 100px;
+}
+
+#feedback button {
+	color: #fff;
+	font-size: 11pt;
+	border-radius: 8px;
+	background: #a33;
+}
+
+#feedback button img {
+	filter: invert(1);
+	width: 30px;
+	vertical-align: middle;
+}
+
 #chart {
 	border: 1px solid #ccc;
 	margin: 30px 0;
@@ -83,4 +108,8 @@ a {
 #footer a {
 	color: #666;
 	margin-right: 10px;
+}
+
+hr {
+	border: 1px solid #eee;
 }
