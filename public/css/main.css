@@ -44,6 +44,10 @@ a {
 	height: 50px;
 }
 
+#header a {
+	text-decoration: none;
+}
+
 #header img {
 	width: 35px;
 	filter: invert(1);
@@ -65,7 +69,6 @@ a {
 }
 
 #feedback {
-	display: none; /* "feature toggle" */
 	margin: 100px 0 0 0;
 	padding: 25px;
 	background: #eee;
@@ -77,14 +80,12 @@ a {
 }
 
 #feedback button {
-	color: #fff;
 	font-size: 11pt;
 	border-radius: 8px;
-	background: #a33;
+	padding: 1px 7px 0 7px;
 }
 
 #feedback button img {
-	filter: invert(1);
 	width: 30px;
 	vertical-align: middle;
 }

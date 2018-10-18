@@ -17,7 +17,7 @@ $router->get('/', function () use ($router) {
     return view('main', [
     	'title' => "Agile velocity tracker",
     	'header' => "Agile velocity tracker",
-    	'content' => view('form'),
+    	'content' => view('homepage'),
     	'menu' => []
     ]);
 });
@@ -27,6 +27,27 @@ $router->post('/calculate-velocity', function (\Illuminate\Http\Request $request
 	return $v->toJson();
 });
 
+
+$router->post("/submit-feedback", function (\Illuminate\Http\Request $request) use ($router) {
+	$feedback = trim($request->get("feedback"));
+	if ($feedback != "") {
+		mail(
+			config("feedback.mailto"),
+			config("feedback.subject"),
+			$feedback
+		);
+	}
+	return redirect("/feedback-received");
+});
+
+$router->get("/feedback-received", function () use ($router) {
+	return view('main', [
+    	'title' => "Feedback received",
+    	'header' => "Feedback received",
+    	'content' => view('feedback-received'),
+    	'menu' => []
+    ]);
+});
 
 $router->get('/legal', function () use ($router) {
     return view('main', [

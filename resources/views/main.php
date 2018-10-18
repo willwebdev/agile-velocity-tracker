@@ -20,8 +20,10 @@
         <![endif]-->
 
         <div id="header">
-            <img src="/images/clock.png" alt="icon" />
-            <h1><?php echo $header; ?></h1>
+            <a href="/">
+                <img src="/images/clock.png" alt="icon" />
+                <h1><?php echo $header; ?></h1>
+            </a>
         </div>
 
         <!--<div id="top-nav">
@@ -40,15 +42,6 @@
         <div class="column-wrapper">
             <div class="column-content">
                 <?php echo $content; ?>
-
-                <div id="feedback">
-                    <hr />
-                    <span>Tell us what you think about this tool. Is it helpful? What features should we add next?</span>
-                    <form method="post" action="/submit-feedback">
-                        <textarea name="feedback"></textarea><br />
-                        <button><img src="/images/feedback.png" alt="icon" /> Send feedback</button>
-                    </form>
-                </div>
             </div>
         </div>
 

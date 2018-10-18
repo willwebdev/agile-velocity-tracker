@@ -6,3 +6,12 @@
 		<div id="chart"></div>
 	</form>
 </div>
+
+<div id="feedback">
+    <hr />
+    <span>Tell us what you think about this tool. Is it helpful? What features should we add next?</span>
+    <form method="post" action="/submit-feedback">
+        <textarea name="feedback"></textarea><br />
+        <button><img src="/images/feedback.png" alt="icon" /> <span>Send feedback</span></button>
+    </form>
+</div>
