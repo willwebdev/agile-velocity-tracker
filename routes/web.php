@@ -14,6 +14,8 @@
 use App\Helpers\Velocity;
 
 $router->get('/', function () use ($router) {
+    die(env("APP_ENV"));
+
     return view('main', [
     	'title' => "Agile velocity tracker",
     	'header' => "Agile velocity tracker",
