@@ -11,7 +11,8 @@ var vmHome = new Vue({
 			var allScores = this.$refs.sprint_scores.value.split(",");
 			this.$http.post('/calculate-velocity', {scores: allScores}).then(response => {
 				this.content = "<p class=\"velocity-report\">"
-				+ "<b>Velocity avg</b>: <span class=\"avg\">" + Math.round(response.body.average) + "</span> (variance range of "
+				+ "<b>Velocity avg</b>: <span class=\"avg\">" + Math.round(response.body.average) + "</span> " +
+				"(+/- " + Math.round(response.body.variance) + ", giving a velocity range of "
 				+ "<span class=\"lower\">" + Math.round(response.body.average - response.body.variance) + "</span> to "
 				+ "<span class=\"upper\">" + Math.round(response.body.average + response.body.variance) + "</span>)"
 				+ "</p>";
