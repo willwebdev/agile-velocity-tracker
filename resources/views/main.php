@@ -1,7 +1,20 @@
-
 <!doctype html>
 <html class="no-js" lang="">
     <head>
+        <?php
+        if (env("APP_ENV") == "production") {
+        ?>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2405870-14"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'UA-2405870-14');
+        </script>
+        <?php
+        }
+        ?>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <title><?php echo $title; ?></title>
@@ -55,13 +68,5 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
         <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
         <script src="/js/main.js"></script>
-
-        <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID.
-        <script>
-            window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
-            ga('create','UA-XXXXX-Y','auto');ga('send','pageview')
-        </script>
-        <script src="https://www.google-analytics.com/analytics.js" async defer></script>
-        -->
     </body>
 </html>
