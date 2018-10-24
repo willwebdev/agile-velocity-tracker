@@ -90,7 +90,7 @@ p.velocity-report .upper {
 	color: #090;
 }
 
-#chart {
+.chart {
 	border: 1px solid #ccc;
 	margin: 10px 0;
 }

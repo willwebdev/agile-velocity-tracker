@@ -3,7 +3,9 @@
 	<form v-on:submit.prevent="calculateVelocity">
 		<p class="intro"><span>Enter your sprint scores (comma separated):</span> <input type="text" size="50" ref="sprint_scores" /> <button v-on:click="calculateVelocity" id="calculate-velocity">Calculate velocity</button></p>
 		<div v-html="content">Please enable Javascript...</div>
-		<div id="chart"></div>
+		<div id="chart-velocityavg" class="chart"></div>
+        <br />
+        <div id="chart-burnup" class="chart"></div>
 	</form>
 </div>
 
