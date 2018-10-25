@@ -93,36 +93,35 @@ var vmHome = new Vue({
 
 			var traceDelivered = {
 				name: "Cumulative points delivered",
-				y: sumScores
+				y: sumScores,
+				line: {
+					color: "#f93"
+				}
 			};
 
-			var generateProjectionLine = function(len, total, avg, variance, op) {
+			var generateProjectionLine = function(len, base, step) {
 				var blanks = Array(len).fill(null);
 				var projection = Array(6).fill(1).map(function(x, i) {
-					return total + (i * op(avg, variance));
+					return base + (i * step);
 				});
 				return blanks.concat(projection);
-			};
-			var opAdd = function(x, y) {
-				return x + y;
-			};
-			var opSubtract = function(x, y) {
-				return x - y;
 			};
 
 			var traceLowerBound = {
 				name: "Lower projection",
-				y: generateProjectionLine(scores.length - 1, total, obj.average, obj.variance, opSubtract),
+				y: generateProjectionLine(scores.length - 1, total, obj.average - obj.variance),
 				line: {
-					dash: "dot"
+					dash: "dot",
+					color: "#900"
 				},
 				mode: "lines"
 			};
 			var traceUpperBound = {
 				name: "Upper projection",
-				y: generateProjectionLine(scores.length - 1, total, obj.average, obj.variance, opAdd),
+				y: generateProjectionLine(scores.length - 1, total, obj.average + obj.variance),
 				line: {
-					dash: "dot"
+					dash: "dot",
+					color: "#090"
 				},
 				mode: "lines"
 			};
