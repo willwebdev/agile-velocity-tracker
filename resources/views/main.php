@@ -26,6 +26,8 @@
 
         <!--<link rel="stylesheet" href="css/normalize.css">-->
         <link rel="stylesheet" href="/css/main.css">
+
+        <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="14a3e674-dc7b-49bd-88c2-f763bc7e18e4" type="text/javascript" async></script>
     </head>
     <body>
         <!--[if lte IE 9]>

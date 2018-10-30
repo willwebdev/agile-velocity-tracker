@@ -14,4 +14,6 @@
 	<h1>Cookies</h1>
 	<p>This website does not save any cookies onto your computer.</p>
 	<p>We do use Google Analytics, which may save their own cookies onto your computer. Please refer to Google's cookie policy.</p>
+
+	<script id="CookieDeclaration" src="https://consent.cookiebot.com/14a3e674-dc7b-49bd-88c2-f763bc7e18e4/cd.js" type="text/javascript" async></script>
 </div>
