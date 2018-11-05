@@ -12,18 +12,68 @@
 */
 
 use App\Helpers\Velocity;
+use App\Helpers\Team;
 
-$router->get('/', function () use ($router) {
+$router->get('/', function (\Illuminate\Http\Request $request) use ($router) {
     return view('main', [
     	'title' => "Agile velocity tracker",
     	'header' => "Agile velocity tracker",
-    	'content' => view('homepage'),
+    	'content' => view('homepage', [
+            'error' => $request->get("error")
+        ]),
     	'menu' => []
     ]);
 });
 
+$router->post('/team/new', function (\Illuminate\Http\Request $request) use ($router) {
+    $team = Team::createNew($request->get("team_name"));
+    $link = "/team/".$team->getID()."/admin/".$team->getAdminToken();
+    
+    $mailto = trim($request->get("email"));
+    if ($mailto != "") {
+        mail(
+            $mailto,
+            config("emails.new-team-subject"),
+            view("emails.new-team", [
+                "team_name" => $team->getName(),
+                "link" => "http://".$request->server("HTTP_HOST").$link
+            ])
+        );
+    }
+
+    return redirect($link);
+});
+
+$router->get('/team/{id}/admin/{token}', function ($id, $token) use ($router) {
+    $team = Team::loadByID($id, $token);
+    if (!$team) {
+        return redirect("/?error=".ERR_TEAM_NOT_FOUND);
+    }
+
+    return view('main', [
+        'title' => "Agile velocity tracker",
+        'header' => "Agile velocity tracker",
+        'content' => view('team.admin', [
+            'team_id' => $team->getID(),
+            'admin_token' => $team->getAdminToken(),
+            'team_name' => $team->getName(),
+            'scores' => $team->getVelocity()->getScores()
+        ]),
+        'menu' => []
+    ]);
+});
+
 $router->post('/calculate-velocity', function (\Illuminate\Http\Request $request) use ($router) {
+    $id = $request->get("teamID");
+    $token = $request->get("adminToken");
+    $team = Team::loadByID($id, $token);
+    if (!$team) {
+        return redirect("/?error=".ERR_TEAM_NOT_FOUND);
+    }
+
 	$v = new Velocity($request->get("scores"));
+    $team->setVelocity($v);
+    $team->save();
 	return $v->toJson();
 });
 
@@ -32,8 +82,8 @@ $router->post("/submit-feedback", function (\Illuminate\Http\Request $request) u
 	$feedback = trim($request->get("feedback"));
 	if ($feedback != "") {
 		mail(
-			config("feedback.mailto"),
-			config("feedback.subject"),
+			config("emails.feedback-mailto"),
+			config("emails.feedback-subject"),
 			$feedback
 		);
 	}

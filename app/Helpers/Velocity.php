@@ -4,25 +4,31 @@ namespace App\Helpers;
 
 class Velocity {
 	protected $_scores;
+    protected $_recentScores;
 
 	public function __construct($scores, $numSprints = 6) {
-		$this->_scores = array_slice($scores, max(count($scores) - $numSprints, 0));
+		$this->_scores = $scores;
+        $this->_recentScores = array_slice($scores, max(count($scores) - $numSprints, 0));
 	}
 
+    public function getScores() {
+        return $this->_scores;
+    }
+
 	public function getAverage() {
-		return array_sum($this->_scores) / count($this->_scores);
+		return array_sum($this->_recentScores) / count($this->_recentScores);
 	}
 
 	public function getVariance() {
-		return $this->stddev($this->_scores);
+		return $this->stddev($this->_recentScores);
 	}
 
 	public function getMax() {
-		return max($this->_scores);
+		return max($this->_recentScores);
 	}
 
 	public function getMin() {
-		return min($this->_scores);
+		return min($this->_recentScores);
 	}
 
 	public function toJson() {

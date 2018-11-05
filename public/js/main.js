@@ -7,11 +7,11 @@ var vmHome = new Vue({
 		this.content = "";
 	},
 	mounted() {
-		this.loadSprintScoresFromCookie();
+		this.loadSprintScores();
 	},
 	methods: {
-		loadSprintScoresFromCookie: function() {
-			var hist = this.unserializeScores();
+		loadSprintScores: function() {
+			var hist = window.avt.team.scores || null;
 			if (hist) {
 				this.$refs.sprint_scores.value = hist;
 				this.calculateVelocity();
@@ -159,31 +159,17 @@ var vmHome = new Vue({
 			var allScores = this.$refs.sprint_scores.value.split(",").map(function(x) {
 				return +x;
 			});
-			this.serializeScores(allScores);
 
-			this.$http.post('/calculate-velocity', {scores: allScores}).then(response => {
+			var params = {
+				scores: allScores,
+				teamID: window.avt.team.id,
+				adminToken: window.avt.team.adminToken
+			};
+			this.$http.post('/calculate-velocity', params).then(response => {
 				this.content = this.printSummary(response.body);
 				this.drawVelocityAvgChart('chart-velocityavg', allScores, response.body);
 				this.drawBurnUpChart('chart-burnup', allScores, response.body);
             });
-		},
-		serializeScores: function(arr) {
-			var ck = (arr) ? arr.toString() : null;
-			if (ck != "") {
-				Cookies.set('scores', arr.toString());
-			} else {
-				Cookies.remove('scores');
-			}
-		},
-		unserializeScores: function() {
-			var arr = Cookies.get('scores');
-			if (arr) {
-				arr = arr.split(",").map(function(x) {
-					return +x;
-				});
-				return arr;
-			}
-			return null;
 		}
 	}
 });
