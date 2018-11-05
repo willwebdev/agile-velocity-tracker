@@ -12,6 +12,7 @@ class Team {
         $obj = new Team(null, $name);
         $obj->generateID();
         $obj->generateAdminToken();
+        $obj->setVelocity(new Velocity([]));
         $obj->save();
         return $obj;
     }
