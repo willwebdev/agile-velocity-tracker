@@ -3,8 +3,11 @@
 namespace App\Helpers;
 
 class Team {
+    const TABLE_NAME = "teams";
+
     protected $_name;
     protected $_id;
+    protected $_isNew = true;
     protected $_token;
     protected $_velocity;
 
@@ -51,38 +54,40 @@ class Team {
         return $this->_token;
     }
 
-    public function serialize() {
-        return implode("\n", [
-            $this->getID(),
-            $this->getAdminToken(),
-            $this->getName(),
-            implode(",", $this->getVelocity()->getScores())
-        ]);
-    }
-
-    public function unserialize($data) {
-        $data = explode("\n", $data);
-        $this->_token = $data[1];
-        $this->_name = $data[2];
-        $this->_velocity = new Velocity(explode(",", $data[3]));
-    }
-
     public function save() {
-        file_put_contents($this->getDataFilePath(), $this->serialize());
+        if ($this->_isNew) {
+            app("db")->insert("INSERT INTO ".self::TABLE_NAME." (
+                    id,
+                    token,
+                    name,
+                    scores,
+                    created_at
+                ) VALUES (
+                    '{$this->_id}',
+                    '{$this->_token}',
+                    '{$this->_name}',
+                    '".implode(",", $this->getVelocity()->getScores())."',
+                    NOW()
+            )");
+        } else {
+            app("db")->update("UPDATE ".self::TABLE_NAME." SET
+                token = '{$this->_token}',
+                name = '{$this->_name}',
+                scores = '".implode(",", $this->getVelocity()->getScores())."',
+                updated_at = NOW()
+            WHERE id = '{$this->_id}'");
+        }
     }
 
     public function load() {
-        $filePath = $this->getDataFilePath();
-        if (!file_exists($filePath)) {
+        $this->_isNew = false;
+        $rows = app("db")->select("SELECT * FROM ".self::TABLE_NAME." WHERE id='{$this->_id}'");
+        if (!$rows) {
             return false;
         }
-
-        $data = file_get_contents($filePath);
-        if (!$data) {
-            return false;
-        }
-
-        $this->unserialize($data);
+        $this->_token = $rows[0]->token;
+        $this->_name = $rows[0]->name;
+        $this->setVelocity(new Velocity(explode(",", $rows[0]->scores)));
         return true;
     }
 
@@ -92,13 +97,5 @@ class Team {
 
     public function getVelocity() {
         return $this->_velocity;
-    }
-
-    public function getDataFilePath() {
-        return $this->getDataDirectory()."/".$this->getID().".txt";
-    }
-
-    public function getDataDirectory() {
-        return getcwd()."/../resources/data";
     }
 }
