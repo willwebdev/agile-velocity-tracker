@@ -2,7 +2,7 @@
 
 use App\Helpers\Velocity;
 
-class ApiTest extends TestCase
+/*class ApiTest extends TestCase
 {
 	/*
      * disabled until it's worth investing in mocking...
@@ -18,5 +18,4 @@ class ApiTest extends TestCase
 		$this->post("/calculate-velocity", ["scores" => [18,21,35,28]]);
 		$this->assertEquals($this->response->getContent(), $json);
 	}
-    */
-}
+}*/

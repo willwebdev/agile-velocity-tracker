@@ -7,7 +7,7 @@ class Team {
 
     protected $_name;
     protected $_id;
-    protected $_isNew = true;
+    protected $_isNew;
     protected $_token;
     protected $_velocity;
 
@@ -36,6 +36,7 @@ class Team {
 
     public function generateID() {
         $this->_id = uniqid();
+        $this->_isNew = true;
     }
 
     public function generateAdminToken() {
@@ -54,6 +55,22 @@ class Team {
         return $this->_token;
     }
 
+    public function getVelocity() {
+        return $this->_velocity;
+    }
+
+    public function setName($name) {
+        $this->_name = $name;
+    }
+
+    public function setAdminToken($token) {
+        $this->_token = $token;
+    }
+
+    public function setVelocity($vel) {
+        $this->_velocity = $vel;
+    }
+
     public function save() {
         if ($this->_isNew) {
             app("db")->insert("INSERT INTO ".self::TABLE_NAME." (
@@ -69,6 +86,7 @@ class Team {
                     '".implode(",", $this->getVelocity()->getScores())."',
                     NOW()
             )");
+            $this->_isNew = false;
         } else {
             app("db")->update("UPDATE ".self::TABLE_NAME." SET
                 token = '{$this->_token}',
@@ -85,17 +103,16 @@ class Team {
         if (!$rows) {
             return false;
         }
+
+        // avoid creating empty single item arrays
+        $scores = [];
+        if ($rows[0]->scores != "") {
+            $scores = explode(",", $rows[0]->scores);
+        }
+
         $this->_token = $rows[0]->token;
         $this->_name = $rows[0]->name;
-        $this->setVelocity(new Velocity(explode(",", $rows[0]->scores)));
+        $this->setVelocity(new Velocity($scores));
         return true;
-    }
-
-    public function setVelocity($vel) {
-        $this->_velocity = $vel;
-    }
-
-    public function getVelocity() {
-        return $this->_velocity;
     }
 }
