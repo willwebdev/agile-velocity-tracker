@@ -72,8 +72,10 @@ $router->post('/calculate-velocity', function (\Illuminate\Http\Request $request
     }
 
 	$v = new Velocity($request->get("scores"));
-    $team->setVelocity($v);
-    $team->save();
+    if ($v != $team->getVelocity()) {
+        $team->setVelocity($v);
+        $team->save();
+    }
 	return $v->toJson();
 });
 
