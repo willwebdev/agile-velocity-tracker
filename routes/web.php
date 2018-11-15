@@ -71,6 +71,8 @@ $router->post('/calculate-velocity', function (\Illuminate\Http\Request $request
         return redirect("/?error=".ERR_TEAM_NOT_FOUND);
     }
 
+    // only save if the velocity has changed
+    // this will preserve the modified_at timestamp
 	$v = new Velocity($request->get("scores"));
     if ($v != $team->getVelocity()) {
         $team->setVelocity($v);
