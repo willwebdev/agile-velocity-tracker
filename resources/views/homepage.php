@@ -11,12 +11,28 @@
         echo '<div class="error"><p>'.$errorMessage.'</p></div>';
     }
     ?>
-    <form method="post" action="/team/new">
-        <p>Welcome to the agile velocity tracker. To get started, first create your team by giving it a name.</p>
-        <p><label>Team name</label> <input type="text" name="team_name" /></p>
+    <div id="promo-banner">
+        <div>
+            <img src="/images/homepage-screenshots.jpg" width="350px" alt="Screenshots of graphs" />
+        </div>
+        <div>
+            <ul>
+                <li>Quickly record your throughput</li>
+                <li>Calculate your velocity instantly</li>
+                <li>Visually forecast future deliveries</li>
+                <li>Free! No sign-up needed</li>
+            </ul>
+        </div>
+    </div>
+    <div id="create-team-form">
+        <form method="post" action="/team/new">
+            <h2>Create your team</h2>
+            <p>To get started, first create your team by giving it a name.</p>
+            <p>Then optionally enter your email address and we'll send you a link to manage your team. Or you can just bookmark the next page.</p>
 
-        <p>Now enter your email address and we'll send you a special 'admin' link that you can use to manage your team's data, instead of having a password. Note: we don't store your email address and you're not subscribing to anything.</p>
-        <p><label>Your email address</label> <input type="text" name="email" /></p>
-        <input type="submit" value="Create team" />
-    </form>
+            <p><label>Team name</label> <input type="text" name="team_name" /></p>
+            <p><label>Your email address</label> <input type="text" name="email" /></p>
+            <input type="submit" value="Create team" />
+        </form>
+    </div>
 </div>

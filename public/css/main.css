@@ -11,7 +11,7 @@ a {
 }
 
 .column-wrapper {
-	width: 80%;
+	width: 100%;
 	max-width: 900px;
 	margin: 0 auto;
 	padding: 1px; /* stop margins collapsing */
@@ -145,4 +145,51 @@ hr {
 .error p {
 	padding: 0;
 	margin: 0;
+}
+
+#promo-banner {
+	text-align: center;
+	background: #fff;
+	padding: 10px;
+}
+
+#promo-banner div {
+	display: inline-block;
+	vertical-align: top;
+	margin: 0 auto;
+}
+
+#promo-banner ul {
+	margin-right: 20px;
+}
+
+#promo-banner li {
+	text-align: left;
+	font-size: 14pt;
+}
+
+#create-team-form {
+	width: 80%;
+	min-width: 300px;
+	margin: 0 auto;
+	padding: 10px;
+	background: #eee;
+}
+
+#create-team-form label {
+	display: inline-block;
+	width: 130px;
+	font-weight: bold;
+	text-align: right;
+}
+
+#create-team-form input[type="text"] {
+	font-size: 10pt;
+	padding: 2px;
+}
+
+#create-team-form input[type="submit"] {
+	display: block;
+	margin: 0 auto;
+	font-size: 15pt;
 }
