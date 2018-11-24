@@ -17,13 +17,15 @@ var vmHome = new Vue({
 				this.calculateVelocity();
 			}
 		},
-		printSummary: function(obj) {
-			return "<p class=\"velocity-report\">"
+		drawSummary: function(el, obj) {
+			var s = "<p class=\"velocity-report\">"
 				+ "<b>Velocity avg</b>: <span class=\"avg\">" + Math.round(obj.average) + "</span> " +
 				"(+/- " + Math.round(obj.variance) + ", giving a velocity range of "
 				+ "<span class=\"lower\">" + Math.round(obj.average - obj.variance) + "</span> to "
 				+ "<span class=\"upper\">" + Math.round(obj.average + obj.variance) + "</span>)"
 				+ "</p>";
+			var target = document.getElementById(el);
+			target.innerHTML = s;
 		},
 		drawVelocityAvgChart(el, scores, obj) {
 			var latestScores = scores.slice(-6);
@@ -166,7 +168,7 @@ var vmHome = new Vue({
 				adminToken: window.avt.team.adminToken
 			};
 			this.$http.post('/calculate-velocity', params).then(response => {
-				this.content = this.printSummary(response.body);
+				this.drawSummary('velocity-summary', response.body);
 				this.drawVelocityAvgChart('chart-velocityavg', allScores, response.body);
 				this.drawBurnUpChart('chart-burnup', allScores, response.body);
             });

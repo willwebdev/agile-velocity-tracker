@@ -68,11 +68,6 @@ a {
 	vertical-align: middle;
 }
 
-#calculate-velocity p.intro {
-	padding: 10px;
-	background: #eee;
-}
-
 p.velocity-report {
 	margin-top: 40px;
 	font-size: 12pt;
@@ -192,4 +187,47 @@ hr {
 	display: block;
 	margin: 0 auto;
 	font-size: 15pt;
+}
+
+
+/** TABS **/
+.tabs{
+  overflow:hidden;
+  clear:both;
+ 
+}
+.tabs ul{
+  list-style-type:none;
+  bottom: -1px;
+  position:relative;
+}
+.tabs li{
+  float:left;
+}
+ 
+.tabs a{
+  display:block;
+  padding:5px 10px;
+  background-color: #EEE;
+  color: #000;
+  text-decoration: none;
+  margin: 0 4px;
+  border-top:1px solid #CCC;
+  border-left:1px solid #DDD;
+  border-right:1px solid #DDD;
+  font:13px/18px verdana,arial,sans-serif;
+  border-bottom:1px solid #CCC;
+}
+.tabs a.active{
+  background-color: #fff;
+  border-bottom:1px solid #fff;
+}
+.tabs div.tab {
+  clear: both;
+  border:1px solid #CCC;
+  padding:5px;
+  font-family:verdana;
+  font-size:13px;
+  background-color: #fff;
+  display:none;
 }

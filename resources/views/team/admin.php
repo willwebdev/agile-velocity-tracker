@@ -11,11 +11,26 @@
 
 <div id="calculate-velocity">
     <form v-on:submit.prevent="calculateVelocity">
-        <p class="intro"><span>Enter your sprint scores (comma separated):</span> <input type="text" size="50" ref="sprint_scores" /> <button v-on:click="calculateVelocity" id="calculate-velocity">Calculate velocity</button></p>
         <div v-html="content">Please enable Javascript...</div>
-        <div id="chart-velocityavg" class="chart"></div>
-        <br />
-        <div id="chart-burnup" class="chart"></div>
+
+        <div class="tabs">
+            <ul>
+                <li><a href="#tab-data" class="active">Enter data</a></li>
+                <li><a href="#tab-velocity">Velocity graph</a></li>
+                <li><a href="#tab-burn-up">Burn-up graph</a></li>
+            </ul>
+            <div id="tab-data" class="tab" style="display:block;">
+                <p>Enter your sprint scores (comma separated): <br /><input type="text" ref="sprint_scores" size="50%" /> <button v-on:click="calculateVelocity" id="calculate-velocity">Calculate velocity</button></p>
+
+                <div id="velocity-summary"></div>
+            </div>
+            <div id="tab-velocity" class="tab">
+                <div id="chart-velocityavg" class="chart"></div>
+            </div>
+            <div id="tab-burn-up" class="tab">
+                <div id="chart-burnup" class="chart"></div>
+            </div>
+        </div>
     </form>
 </div>
 
@@ -27,3 +42,10 @@
         <button><img src="/images/feedback.png" alt="icon" /> <span>Send feedback</span></button>
     </form>
 </div>
+
+<script src="/js/tabs.js" type="text/javascript"></script>
+<script>
+window.addEventListener("load", function() {
+    makeTabs(".tabs")
+});
+</script>
